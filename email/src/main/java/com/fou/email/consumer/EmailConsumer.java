@@ -17,13 +17,9 @@ public class EmailConsumer {
     public void listen(@Payload EmailDto emailDto) {
         try {
             System.out.println("LOG: Mensagem recebida da fila. Processando...");
-
-            // Chama o service para fazer o trabalho sujo
             emailService.sendEmail(emailDto);
-
         } catch (Exception e) {
             System.err.println("ERRO: Falha ao enviar e-mail: " + e.getMessage());
-            // Aqui futuramente implementaríamos uma lógica de re-tentativa
         }
     }
 }

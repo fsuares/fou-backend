@@ -14,14 +14,12 @@ public class EmailService {
 
     public void sendEmail(EmailDto emailDto) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("noreply@fou.com"); // Quem está enviando
+        message.setFrom("noreply@fou.com");
         message.setTo(emailDto.getEmailTo());
         message.setSubject(emailDto.getSubject());
         message.setText(emailDto.getText());
 
-        emailSender.send(message); // Dispara o e-mail real
-
-        // Log para vermos no console
+        emailSender.send(message);
         System.out.println("LOG: E-mail enviado com sucesso para: " + emailDto.getEmailTo());
     }
 }

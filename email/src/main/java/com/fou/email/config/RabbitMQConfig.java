@@ -13,7 +13,6 @@ public class RabbitMQConfig {
 
     @Bean
     public Queue queue() {
-        // Cria a fila se ela não existir. "true" significa que é durável (não some ao reiniciar)
         return new Queue(queueName, true);
     }
 }

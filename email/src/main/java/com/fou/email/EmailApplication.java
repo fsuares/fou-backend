@@ -14,7 +14,6 @@ public class EmailApplication {
 
     @Bean
     public Queue createQueue() {
-        // Creates the queue automatically if it doesn't exist
         return new Queue("email-queue", true);
     }
 }
