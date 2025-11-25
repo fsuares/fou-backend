@@ -1,6 +1,7 @@
 package com.fou.user.controller;
 
-import com.fou.user.dto.EmailDto; // Certifique-se que este import existe
+import com.fou.user.dto.EmailDto;
+import com.fou.user.dto.NotificationRequest;
 import com.fou.user.model.User;
 import com.fou.user.service.UserService;
 import jakarta.validation.Valid;
@@ -36,8 +37,8 @@ public class UserController {
     }
 
     @PostMapping("/notify-all")
-    public ResponseEntity<String> notifyAllUsers(@RequestParam String subject, @RequestParam String message) {
-        userService.sendNotificationToAll(subject, message);
-        return ResponseEntity.ok("Processo de envio em massa iniciado com sucesso!");
+    public ResponseEntity<String> notifyAllUsers(@RequestBody NotificationRequest request) {
+        userService.sendNotificationToAll(request.getSubject(), request.getMessage());
+        return ResponseEntity.ok("Disparo em massa iniciado!");
     }
 }
