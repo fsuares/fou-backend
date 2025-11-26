@@ -1,6 +1,5 @@
 package com.fou.user.controller;
 
-import com.fou.user.dto.EmailDto;
 import com.fou.user.dto.NotificationRequest;
 import com.fou.user.model.User;
 import com.fou.user.service.UserService;

@@ -2,12 +2,16 @@ package com.fou.user.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import java.util.UUID;
+import lombok.NoArgsConstructor;
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
-public class EmailDto {
-    private UUID userId;
+@NoArgsConstructor
+public class EmailDto implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private java.util.UUID userId;
     private String emailTo;
     private String subject;
     private String text;

@@ -19,7 +19,11 @@ public class EmailService {
         message.setSubject(emailDto.getSubject());
         message.setText(emailDto.getText());
 
-        emailSender.send(message);
-        System.out.println("LOG: E-mail enviado com sucesso para: " + emailDto.getEmailTo());
+        try {
+            emailSender.send(message);
+            System.out.println("LOG: E-mail enviado com sucesso para: " + emailDto.getEmailTo());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

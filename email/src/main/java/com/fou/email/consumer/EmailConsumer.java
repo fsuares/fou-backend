@@ -13,13 +13,15 @@ public class EmailConsumer {
     @Autowired
     private EmailService emailService;
 
-    @RabbitListener(queues = "${spring.rabbitmq.queue}") // Pega o nome do properties
+    @RabbitListener(queues = "${spring.rabbitmq.queue}")
     public void listen(@Payload EmailDto emailDto) {
+        System.out.println("DEBUG: Mensagem chegou no EmailService! Para: " + emailDto.getEmailTo());
+
         try {
-            System.out.println("LOG: Mensagem recebida da fila. Processando...");
             emailService.sendEmail(emailDto);
         } catch (Exception e) {
-            System.err.println("ERRO: Falha ao enviar e-mail: " + e.getMessage());
+            System.err.println("ERRO CRÍTICO AO ENVIAR E-MAIL:");
+            e.printStackTrace();
         }
     }
 }
