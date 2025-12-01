@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "users") // Usar plural é boa prática para evitar conflito com palavra reservada SQL 'USER'
+@Table(name = "users")
 public class User {
 
     @Id
@@ -20,5 +20,5 @@ public class User {
     private String email;
 
     @Column(nullable = false)
-    private String password; // Em produção, lembre-se de criptografar isso!
+    private String password;
 }
