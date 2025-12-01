@@ -21,7 +21,7 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private RabbitTemplate rabbitTemplate; // RabbitMQ Client
+    private RabbitTemplate rabbitTemplate;
 
     public User createUser(User user) {
         if (userRepository.existsByEmail(user.getEmail())) {
@@ -47,7 +47,6 @@ public class UserService {
         System.out.println("LOG: Iniciando processo de envio para " + users.size() + " usuários.");
 
         for (User user : users) {
-            // Constructing the message in Portuguese
             String personalizedText = "Olá " + user.getName() + ",\n\n" + messageContent;
 
             EmailDto emailDto = new EmailDto(
@@ -57,7 +56,6 @@ public class UserService {
                     personalizedText
             );
 
-            // Sending to RabbitMQ queue "email-queue"
             rabbitTemplate.convertAndSend("email-queue", emailDto);
         }
     }

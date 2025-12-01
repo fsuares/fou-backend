@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # --- INFRA ---
   postgres:
@@ -45,3 +43,14 @@ services:
       - rabbitmq
     environment:
       SPRING_RABBITMQ_HOST: rabbitmq
+
+  auth-service:
+    build: ./auth
+    container_name: fou-auth-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/fou-db
+      SPRING_DATASOURCE_PASSWORD: 1234
